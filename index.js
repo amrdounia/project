@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
-const SerialPort = require('serialport');
+const dataRoutes = require('./routes/data');
+
 
 
 mongoose
@@ -22,6 +23,10 @@ app.use(express.json());
 
 // Utilisation des routes
 app.use('/api/auth', authRoutes);
+
+// Utilisation des routes
+app.use('/api/data', dataRoutes);
+
 
 app.listen(3000, () => {
   console.log(`Serveur lancé sur le port 3000`);
