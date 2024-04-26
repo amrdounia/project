@@ -84,7 +84,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Find user by email
-    const existingUser = await user.findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res.status(401).send({ message: 'Invalid email or password' });
     }
