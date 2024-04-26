@@ -7,14 +7,15 @@ const Position = require('../models/position'); // Assuming the model is named U
 // Route pour ajouter une nouvelle position
 router.post("/positions", async (req, res) => {
     try {
-      const { carId, latitude, longitude } = req.body;
-      const newPosition = new Position({ carId, latitude, longitude });
+      const { carId, location } = req.body;
+      const newPosition = new Position({ carId, location });
       await newPosition.save();
       res.status(201).json(newPosition);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
   });
+
 
 // Route pour obtenir la position actuelle d'un véhicule par son ID
 router.get("/positions/:carId", async (req, res) => {
