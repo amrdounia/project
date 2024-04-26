@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const dataRoutes = require('./routes/data');
+const positionRoutes = require('./routes/findposition');
 
 
 
@@ -27,6 +28,8 @@ app.use('/api/auth', authRoutes);
 // Utilisation des routes
 app.use('/api/data', dataRoutes);
 
+// Utilisation des routes
+app.use('/api/findposition', positionRoutes);
 
 app.listen(3000, () => {
   console.log(`Serveur lancé sur le port 3000`);
