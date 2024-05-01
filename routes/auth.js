@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/users'); // Assuming the model is named User
 const bcrypt = require('bcrypt');
 
-
 // Route de signup
 router.post('/signup', async (req, res) => {
   try {
