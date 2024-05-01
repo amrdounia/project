@@ -3,14 +3,15 @@ const router = express.Router();
 const User = require('../models/users'); // Assuming the model is named User
 const bcrypt = require('bcrypt');
 
+
 // Route de signup
 router.post('/signup', async (req, res) => {
   try {
     // Extract user data
-    const { FullName, email, password, confirmPassword, CarId } = req.body;
+    const { FullName, email, password, confirmPassword  } = req.body;
 
     // Validate required fields
-    if (!FullName || !email || !password || !confirmPassword || !CarId) {
+    if (!FullName || !email || !password || !confirmPassword ) {
       return res.status(400).send({ message: 'Missing required fields' });
     }
 
@@ -45,7 +46,6 @@ router.post('/signup', async (req, res) => {
       FullName,
       email,
       password: hashedPassword,
-      CarId,
     });
 
     // Save the new user
