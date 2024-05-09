@@ -32,4 +32,23 @@ router.get("/positions/:carId", async (req, res) => {
     }
   });
 
+
+  // Route API pour récupérer l'historique des positions d'un véhicule pour les dernières 24 heures
+router.get("/history/:carId", async (req, res) => {
+  const { carId } = req.params;
+
+  try {
+    // Récupérer les positions des 3 derniers jours pour le véhicule donné
+    const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+    const positions = await Position.find({ carId, timestamp: { $gte: threeDaysAgo } }).sort({ timestamp: 1 });
+
+    res.json(positions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erreur lors de la récupération de l\'historique des positions.' });
+  }
+});
+
+
   module.exports = router;
